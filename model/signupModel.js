@@ -5,6 +5,9 @@ const Schema = new mongoose.Schema({
     password: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     role: { type: String, enum: ['ADMIN', 'NORMAL'], default: 'NORMAL' },
+    profile: { type: String, default: 'default.jpg' },
+    passwordResetToken: { type: String },
+    passwordResetExpires: { type: Date },
 
 });
 module.exports = mongoose.model('User', Schema)

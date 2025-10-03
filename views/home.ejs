@@ -17,7 +17,8 @@
             margin-top: 20px;
         }
 
-        th, td {
+        th,
+        td {
             border: 1px solid #aaa;
             padding: 8px 12px;
             text-align: left;
@@ -26,6 +27,24 @@
         th {
             background-color: #f4f4f4;
         }
+
+        form {
+            margin-top: 20px;
+        }
+
+        input[type="text"] {
+            padding: 8px;
+            width: 300px;
+            margin-right: 10px;
+        }
+
+        button {
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -33,46 +52,49 @@
     <h1>URL Shortener</h1>
 
     <% if (locals.shortId) { %>
-        <p>URL Generated: 
+        <p>URL Generated:
             <a href="http://localhost:5000/url/<%= shortId %>">
                 http://localhost:5000/url/<%= shortId %>
             </a>
         </p>
-    <% } %>
+        <% } %>
 
-    <!-- URL Form -->
-    <div>
-        <form method="POST" action="/url">
-            <label for="originalUrl">Enter Your Original URL</label><br />
-            <input type="text" name="originalUrl" placeholder="https://example.com" id="url" />
-            <button type="submit">Generate</button>
-        </form>
-    </div>
+            <!-- URL Form -->
+            <div>
+                <form method="POST" action="/url">
+                    <label for="originalUrl">Enter Your Original URL</label><br />
+                    <input type="text" name="originalUrl" placeholder="https://example.com" id="url" />
+                    <button type="submit">Generate</button>
+                </form>
+            </div>
 
-    <!-- Show all URLs -->
-    <% if (url && url.length > 0) { %>
-        <h2>All Shortened URLs</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Original URL</th>
-                    <th>Shortened URL</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% url.forEach(u => { %>
-                    <tr>
-                        <td><a href="<%= u.originalUrl %>" target="_blank"><%= u.originalUrl %></a></td>
-                        <td><a href="http://localhost:5000/url/<%= u.shortId %>" target="_blank">
-                            http://localhost:5000/url/<%= u.shortId %>
-                        </a></td>
-                    </tr>
-                <% }) %>
-            </tbody>
-        </table>
-    <% } else { %>
-        <p>No URLs found yet.</p>
-    <% } %>
+            <!-- Show all URLs -->
+            <% if (url && url.length> 0) { %>
+                <h2>All Shortened URLs</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Original URL</th>
+                            <th>Shortened URL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% url.forEach(u=> { %>
+                            <tr>
+                                <td><a href="<%= u.originalUrl %>" target="_blank">
+                                        <%= u.originalUrl %>
+                                    </a></td>
+                                <td><a href="http://localhost:5000/url/<%= u.shortId %>" target="_blank">
+                                        http://localhost:5000/url/<%= u.shortId %>
+                                    </a></td>
+                            </tr>
+                            <% }) %>
+                    </tbody>
+                </table>
+                <% } else { %>
+                    <p>No URLs found yet.</p>
+                    <% } %>
 
 </body>
+
 </html>

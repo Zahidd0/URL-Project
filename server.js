@@ -29,7 +29,7 @@ app.use(checkAuthentication)
 
 app.use("/user", signUproutes,);
 
-app.use("/url",restrictTo(["NORMAL","ADMIN"]),urlRoute);
+app.use("/url",urlRoute);
 app.use("/", staticRoute);
 
 

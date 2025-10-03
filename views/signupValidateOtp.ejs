@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>signup using OTP</title>
     <style>
         form {
             display: flex;
@@ -29,22 +31,17 @@
 </head>
 
 <body>
-    <h2>Login</h2>
-    <p style="color: green;">
-        <% if (message) { %>
-            <%= message %>
-                <% } %>
-    </p>
     <p style="color: red;">
         <% if (error) { %>
             <%= error %>
                 <% } %>
+
     </p>
-    <form action="/user/loginuser" method="POST">
-        <input type="text" name="username" placeholder="Username" required /><br />
-        <input type="password" name="password" placeholder="Password" required /><br />
-        <button type="submit">Login</button>
-        <a href="forgotpassword">Forgot Password</a>
+    <form action="/user/signup/verify-otp" method="POST">
+        <input type="hidden" name="authToken" value="<%= authToken %>">
+        <label for="otp">Enter OTP:</label>
+        <input type="text" id="otp" name="otp" required>
+        <button type="submit">Verify OTP</button>
     </form>
 </body>
 
